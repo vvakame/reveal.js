@@ -4,6 +4,7 @@
 // ---------------------------------------------
 
 @import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css);
 
 // Include theme-specific fonts
 // @import url(../../lib/font/source-sans-pro/source-sans-pro.css);
@@ -38,11 +39,76 @@ section.has-dark-background {
 	}
 }
 
+@mixin arrow-box($arrow-name,
+	$arrow-size: 20px,
+	$arrow-border: 4px,
+	$arrow-color: #fff,
+	$arrow-border-color: #16b2f5) {
+
+	$directions: left right top bottom;
+
+	@each $direction in $directions {
+		$border-position: "right";
+		$margin-position: "top";
+
+		@if $direction == "right" {
+			$border-position: "left";
+			$margin-position: "top";
+		}
+		@else if $direction == "top" {
+			$border-position: "bottom";
+			$margin-position: "left";
+		}
+		@else if $direction == "bottom" {
+			$border-position: "top";
+			$margin-position: "left";
+		}
+
+		.#{$arrow-name}-#{$direction} {
+			position: relative;
+			background: $arrow-color;
+			border: $arrow-border solid $arrow-border-color;
+			
+			&:after, &:before {
+				#{$border-position}: 100%;
+				#{$margin-position}: 50%;
+				border: solid transparent;
+				content: " ";
+				height: 0;
+				width: 0;
+				position: absolute;
+				pointer-events: none;
+			}
+			
+			&:after {
+				border-color: rgba(255, 255, 255, 0);
+				border-#{$border-position}-color: $arrow-color;
+				border-width: $arrow-size;
+				margin-#{$margin-position}: -1 * $arrow-size;
+			}
+			
+			&:before {
+				border-color: rgba(22, 178, 245, 0);
+				border-#{$border-position}-color: $arrow-border-color;
+				border-width: $arrow-size + $arrow-border;
+				margin-#{$margin-position}: -1 * ($arrow-size + $arrow-border);
+			}
+		}
+	}
+}
+
 // Theme template ------------------------------
 @import "../template/theme";
 // ---------------------------------------------
 
 .reveal {
+	img.profile-image {
+		margin: 0;
+		box-shadow: none;
+		width: 20%;
+		height: 20%;
+	}
+	
 	.slides {
 		margin-top: 0.4em;
 
@@ -75,5 +141,15 @@ section.has-dark-background {
 	h2 {
 		background-color: #866ae6;
 		color: #fff;
+	}
+
+	@include arrow-box(arrow-box);
+	.arrow-box-right {
+		float: left;
+		clear: both;
+	}
+	.arrow-box-left {
+		float: right;
+		clear: both;
 	}
 }
