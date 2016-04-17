@@ -3,6 +3,7 @@
 @import "../template/settings";
 // ---------------------------------------------
 
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
 
 // Include theme-specific fonts
 // @import url(../../lib/font/source-sans-pro/source-sans-pro.css);
@@ -10,15 +11,17 @@
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: #fff;
 
+// メインの文字色
 $mainColor: #222;
+// ヘッダの文字色
 $headingColor: #222;
 
-$mainFontSize: 38px;
-$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
-$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$mainFontSize: 56px;
+$mainFont: 'Noto Sans Japanese', 'Platino', Helvetica, sans-serif;
+$headingFont: 'Arial Narrow', Helvetica, sans-serif;
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
-$headingTextTransform: uppercase;
+$headingTextTransform: none;
 $headingFontWeight: 600;
 $linkColor: #2a76dd;
 $linkColorHover: lighten( $linkColor, 15% );
@@ -35,7 +38,42 @@ section.has-dark-background {
 	}
 }
 
-
 // Theme template ------------------------------
 @import "../template/theme";
 // ---------------------------------------------
+
+.reveal {
+	.slides {
+		margin-top: 0.4em;
+
+		.title {
+			margin-top: 3em;
+		}
+		
+		section {
+			top: 0 !important;
+		}
+
+		p {
+			text-align: left;
+			
+			&.center {
+				text-align: center;
+			}
+		}
+	}
+
+	section img {
+		border: 0;
+	}
+
+	h1 {
+		background-color: #87c73c;
+		color: #fff;
+	}
+	
+	h2 {
+		background-color: #866ae6;
+		color: #fff;
+	}
+}
